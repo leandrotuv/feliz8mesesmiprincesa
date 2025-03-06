@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>para ti mi niña 🥺🤍</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        #video-container {
+            position: relative;
+            width: 80vw;
+            height: 45vw;
+            max-width: 480px;
+            max-height: 270px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #barra-carga {
+            width: 80vw;
+            max-width: 350px;
+            height: 30px;
+            background-color: #f0f0f0;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 2px solid #9370DB;
+        }
+
+        #barra-carga div {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(to right, #ff6600, #ffcc00);
+            transition: width 1s ease-in-out;
+        }
+
+        #boton-carga {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            -webkit-tap-highlight-color: transparent; /* Elimina el resaltado azul en dispositivos táctiles */
+        }
+
+        #boton-carga:hover {
+            background-color: #555;
+        }
+
+        #boton-carga:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 600px) {
+            #video-container {
+                width: 90vw;
+                height: 50vw;
+            }
+            #barra-carga {
+                width: 90vw;
+            }
+            #boton-carga {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <video id="video-background" src="kuro1.mp4" autoplay loop muted></video>
+
+    <div id="video-container">
+        <video src="kuro.mp4" autoplay loop muted></video>
+    </div>
+    <div id="barra-carga">
+        <div></div>
+    </div>
+    <button id="boton-carga">Aplasta aqui mi reina ❤️‍🩹🥺</button>
+
+    <audio id="audio-fondo" src="music1.mp3" loop></audio>
+
+    <script>
+        const botonCarga = document.getElementById('boton-carga');
+        const barraCarga = document.querySelector('#barra-carga div');
+        const audioFondo = document.getElementById('audio-fondo');
+        let intervalo;
+        let ancho = 0;
+        let audioReproducido = false;
+
+        // Función para iniciar la barra de carga y reproducir la música
+        function iniciarCarga() {
+            if (!audioReproducido) {
+                audioFondo.play();
+                audioReproducido = true;
+                botonCarga.textContent = "Manten presionado para cargar";
+            }
+
+            // Iniciar la barra de carga solo cuando se presiona el botón
+            intervalo = setInterval(frame, 200);
+
+            function frame() {
+                if (ancho >= 100) {
+                    clearInterval(intervalo);
+                    setTimeout(() => {
+                        window.location.href = "index2.html"; // Redirige a la otra página después de un pequeño retraso
+                    }, 500); // Espera 500ms antes de redirigir para permitir la animación final
+                } else {
+                    ancho++;
+                    barraCarga.style.width = ancho + '%';
+                }
+            }
+        }
+
+        // Función para detener la carga si el usuario suelta el botón
+        function detenerCarga() {
+            clearInterval(intervalo);
+            ancho = 0;
+            barraCarga.style.width = '0%';
+        }
+
+        // Detectar clic o toque
+        botonCarga.addEventListener('mousedown', iniciarCarga);
+        botonCarga.addEventListener('touchstart', iniciarCarga); // Añadir touchstart para móviles
+
+        botonCarga.addEventListener('mouseup', detenerCarga);
+        botonCarga.addEventListener('mouseleave', detenerCarga);
+
+        // Detener la carga si el usuario deja de presionar el botón
+        botonCarga.addEventListener('touchend', detenerCarga);
+    </script>
+
+</body>
+</html>

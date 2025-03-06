@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>Carta de Amor</title>
+    <style>
+        /* Base Styles */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #fce4ec;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            overflow: hidden;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        #fondo-imagen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        #contenedor-musica {
+            text-align: center;
+            z-index: 1;
+            position: absolute;
+            top: 50%; /* Centra verticalmente */
+            left: 50%; /* Centra horizontalmente */
+            transform: translate(-50%, -50%); /* Ajusta para que quede completamente en el centro */
+        }
+
+        #texto-musica {
+            margin-bottom: 20px;
+            font-size: 24px;  /* Aumenta el tamaño del texto */
+            color: #ee0909;
+        }
+
+        /* Estilos mejorados para el botón */
+        #boton-musica {
+            padding: 12px 30px; /* Ajuste del padding para que sea más alargado */
+            font-size: 20px; /* Tamaño adecuado del texto */
+            background: linear-gradient(135deg, #9c27b0, #e91e63); /* Degradado de color */
+            color: white; /* Texto blanco */
+            border: none;
+            border-radius: 50px; /* Borde redondeado */
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            transition: all 0.3s ease; /* Transición suave */
+            min-width: 250px; /* Asegura un ancho mínimo para el botón */
+            width: auto; /* El botón se ajusta al tamaño de la letra */
+            white-space: nowrap; /* Evita que el texto se envuelva */
+        }
+
+        #boton-musica:hover {
+            transform: scale(1.05); /* Efecto de agrandar el botón */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Aumentar la sombra */
+            background: linear-gradient(135deg, #e91e63, #9c27b0); /* Invertir el degradado al hacer hover */
+        }
+
+        #boton-musica:active {
+            transform: scale(0.95); /* Efecto de presión cuando se presiona */
+        }
+
+        /* Estilos para la carta */
+        .carta {
+            width: 90vw;
+            max-width: 600px;
+            height: auto;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Asegura que el contenido de la carta se centre */
+            overflow-y: auto; /* Habilita el desplazamiento vertical */
+            max-height: 80vh; /* Limita la altura máxima de la carta para que se pueda desplazar */
+            border: 4px solid #9c27b0; /* Borde lila */
+        }
+
+        .mensaje {
+            color: #333;
+            line-height: 1.6;
+            font-size: 24px;
+            margin-bottom: 25px;
+            padding: 10px;
+            overflow-y: hidden;
+            word-wrap: break-word;
+        }
+
+        .corazon {
+            color: #e91e63;
+            font-size: 50px;
+            margin-top: 25px;
+        }
+
+        .video-carta {
+            width: 80%; /* Ajusta el tamaño del video */
+            height: auto;
+            margin-top: 20px;
+            border-radius: 15px;
+            display: block; /* Hace que el video sea un bloque */
+            margin-left: auto; /* Centra el video horizontalmente */
+            margin-right: auto; /* Centra el video horizontalmente */
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            #boton-musica {
+                padding: 14px 32px; /* Ajustar el tamaño del botón en móviles */
+                font-size: 22px; /* Aumentar el tamaño de la fuente */
+                min-width: 220px; /* Ajusta el ancho mínimo para pantallas pequeñas */
+            }
+
+            #texto-musica {
+                font-size: 28px; /* Aumentar el tamaño del texto */
+                margin-bottom: 30px;
+            }
+
+            .carta {
+                width: 80vw; /* Ajuste para pantallas pequeñas */
+            }
+
+            .mensaje {
+                font-size: 22px; /* Ajuste el tamaño del texto */
+            }
+
+            .video-carta {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 590px) {
+            #boton-musica {
+                padding: 16px 36px; /* Botón más grande para pantallas muy pequeñas */
+                font-size: 24px; /* Aumentar aún más el tamaño del texto */
+                min-width: 200px; /* Reduce el ancho mínimo */
+            }
+
+            .mensaje {
+                font-size: 18px;
+            }
+
+            .corazon {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Imagen de fondo -->
+    <img src="kui.jpg" alt="Fondo" id="fondo-imagen">
+
+    <!-- Contenedor del botón de música -->
+    <div id="contenedor-musica">
+        <div id="texto-musica">escucha la musica te la dedico amor de mi vidaaaa😍❤️‍🩹🤍</div>
+        <button id="boton-musica">aplaste aqui mi amor 🙈🤍</button>
+    </div>
+
+    <!-- Carta -->
+    <div class="carta" id="carta">
+        <div class="mensaje">
+            <p>Feliz 8 meses mi princesa ❤️‍🩹 Cada instante a tu lado es un regalo precioso. Tu amor ilumina mi vida como un faro en la noche. Eres mi refugio, mi alegría, mi todo. Llegamos al final, mi amor, espero te haya gustado. Le metí mucho esfuerzo. Te amo, mi niña favorita, recuérdalo siempre. Me quiero casar con usted ❤️‍🩹🥺🤍 fin mi niña bonita🥺❤️‍🩹</p>
+        </div>
+        <div>
+            <video src="nomi.mp4" controls class="video-carta" muted></video> <!-- Video con sonido desactivado inicialmente -->
+        </div>
+
+        <!-- Párrafo adicional -->
+        <div>
+            <p>te amoo mucho amor responde esta pregunta ; en verdad deseas casarte conmigo? soy el hombre que buscabas? dimelo por wsa 🥺❤️‍🩹 espero le aya gustado mi amoor eres el amor mi vida y alma te amo mi cotinita❤️‍🩹 feliz 8 meses hpt😍</p>
+        </div>
+    </div>
+
+    <script>
+        const botonMusica = document.getElementById('boton-musica');
+        const carta = document.getElementById('carta');
+        const contenedorMusica = document.getElementById('contenedor-musica');
+        const audio = new Audio('didi.mp3');
+        const video = document.querySelector('.video-carta'); // Seleccionamos el video
+
+        botonMusica.addEventListener('click', () => {
+            // Reproducir la música
+            audio.play();
+
+            // Ocultar el botón de música
+            contenedorMusica.style.display = 'none';
+
+            // Mostrar la carta
+            carta.style.display = 'block';
+        });
+
+        // Pausar la música cuando el video comience a reproducirse
+        video.addEventListener('play', () => {
+            audio.pause(); // Detener la música
+        });
+
+        // Reanudar la música cuando el video termine o se pause
+        video.addEventListener('ended', () => {
+            audio.play(); // Reanudar la música después de que termine el video
+        });
+
+        video.addEventListener('pause', () => {
+            audio.play(); // Reanudar la música si el video es pausado
+        });
+    </script>
+</body>
+</html>
